@@ -53,9 +53,7 @@ class FgRcvRequestFind {
 }
 
 class FgRcvResponseSave {
-
     var transId: Long? = null
-
     var wmsTransId: Long? = null
     var erpTransId: String? = null
     var staffId: Long? = null
@@ -66,7 +64,6 @@ class FgRcvResponseSave {
     var pickListId: String? = null
     var qty: Long? = null
     var logTime: Timestamp? = null
-
     var status: Int? = null
     var locator: String? = null
     var member: String? = null
