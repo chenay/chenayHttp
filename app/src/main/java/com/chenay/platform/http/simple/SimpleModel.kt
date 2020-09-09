@@ -29,7 +29,7 @@ import javax.net.ssl.X509TrustManager
  **/
 open class SimpleModel : Model {
 
-    public override fun <RespB> postJsonNoEncrypt(
+    open override fun <RespB> postJsonNoEncrypt(
         observer: DisposableObserver<RespB>,
         api: (Retrofit) -> Observable<RespB>
     ) {
@@ -79,7 +79,7 @@ open class RetrofitHelper {
 
         var retrofitBuilder: Retrofit.Builder? = null
 
-        public fun defaultInit(host: String, port: Int) {
+        open fun defaultInit(host: String, port: Int) {
             DEFAULT_HOST = host
             DEFAULT_PORT = port
             initClientBuilder()
@@ -91,7 +91,7 @@ open class RetrofitHelper {
             initRetrofitBuilder()
         }
 
-        private fun initClientBuilder() {
+        open fun initClientBuilder() {
             clientBuilder =
                 OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
@@ -101,7 +101,7 @@ open class RetrofitHelper {
                     .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
         }
 
-        private fun initRetrofitBuilder() {
+        open fun initRetrofitBuilder() {
             if (retrofitBuilder == null) {
                 val build = clientBuilder!!.build()
                 retrofitBuilder = Retrofit.Builder()

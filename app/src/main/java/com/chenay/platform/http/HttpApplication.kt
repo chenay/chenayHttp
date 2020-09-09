@@ -28,7 +28,7 @@ open class HttpApplication : Application() {
         return configurationContext
     }
 
-    public fun initHttp() {
+    open fun initHttp() {
 
     }
 
