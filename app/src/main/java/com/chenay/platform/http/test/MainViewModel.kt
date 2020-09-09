@@ -1,11 +1,11 @@
 package com.chenay.platform.http.test
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.chenay.platform.http.base.BaseViewModel
 import com.chenay.platform.http.entity.HintEntity
 import com.chenay.platform.http.entity.HttpResponseEntity
 import com.chenay.platform.http.simple.SimpleDisposableObserver
+import java.sql.Timestamp
 
 /**
  * @program: chenayHttp
@@ -25,23 +25,26 @@ class MainViewModel : BaseViewModel() {
     /**
      * 查询收货记录
      */
-    fun requestFind(request: FgRcvRequestFind) {
+    fun newrequestFind(request: FgRcvRequestFind) {
 
-        TestModelImpl().httpRequestGiRcvLog(request, object : SimpleDisposableObserver<HttpResponseEntity<FgRcvResponseSave>>(this.callShowHint) {
-            override fun onNext(t: HttpResponseEntity<FgRcvResponseSave>) {
-                if (t.iResult()) {
-                    mldLog.value = t.gtDefaultBean()
-                } else {
-                    callShowHint?.invoke(HintEntity().apply {
-                        t.gtMsg()?.let { showToast(it) }
-                    })
+        TestModelImpl().httpRequestGiRcvLog(
+            request,
+            object :
+                SimpleDisposableObserver<HttpResponseEntity<FgRcvResponseSave>>(this.callShowHint) {
+                override fun onNext(t: HttpResponseEntity<FgRcvResponseSave>) {
+                    if (t.iResult()) {
+                        mldLog.value = t.gtDefaultBean()
+                    } else {
+                        callShowHint?.invoke(HintEntity().apply {
+                            t.gtMsg()?.let { showToast(it) }
+                        })
+                    }
                 }
-            }
-        })
+            })
     }
 }
 
-class FgRcvRequestFind{
+class FgRcvRequestFind {
     //@ApiModelProperty(value = "请求的用户ID", required = true)
     var staffId: String = "458081"
 
@@ -50,5 +53,50 @@ class FgRcvRequestFind{
 }
 
 class FgRcvResponseSave {
+
+    var transId: Long? = null
+
+    var wmsTransId: Long? = null
+    var erpTransId: String? = null
+    var staffId: Long? = null
+    var menuId: Long? = null
+    var giNo1: String? = null
+    var giNo2: String? = null
+    var giNo3: String? = null
+    var pickListId: String? = null
+    var qty: Long? = null
+    var logTime: Timestamp? = null
+
+    var status: Int? = null
+    var locator: String? = null
+    var member: String? = null
+    var returnTxType: String? = null
+    var docNo: String? = null
+    var docId: Long? = null
+    var itemNo: String? = null
+
+
+    override fun toString(): String {
+        return "ScanLog{" +
+                "transId=" + transId +
+                ", wmsTransId=" + wmsTransId +
+                ", erpTransId=" + erpTransId +
+                ", staffId=" + staffId +
+                ", menuId=" + menuId +
+                ", giNo1=" + giNo1 +
+                ", giNo2=" + giNo2 +
+                ", giNo3=" + giNo3 +
+                ", pickListId=" + pickListId +
+                ", qty=" + qty +
+                ", logTime=" + logTime +
+                ", status=" + status +
+                ", locator=" + locator +
+                ", member=" + member +
+                ", returnTxType=" + returnTxType +
+                ", docNo=" + docNo +
+                ", docId=" + docId +
+                ", itemNo=" + itemNo +
+                "}"
+    }
 
 }

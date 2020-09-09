@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import com.chenay.platform.http.simple.RetrofitHelper
-import okhttp3.logging.HttpLoggingInterceptor
 
 
 /**
@@ -14,7 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
  * @author: chenYan
  * @create: 2020-09-09 17:23
  **/
-class HttpApplication : Application() {
+public class HttpApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -29,10 +28,7 @@ class HttpApplication : Application() {
         return configurationContext
     }
 
-    private fun initHttp() {
-
-        /* debug时完整输出 http*/
-        RetrofitHelper.defaultInit("http://10.64.90.79", 8687)
+    public fun initHttp() {
 
     }
 
