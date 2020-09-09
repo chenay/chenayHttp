@@ -1,7 +1,7 @@
 package com.chenay.platform.http.simple
 
-import com.chenay.platform.http.BuildConfig
 import io.reactivex.Observable
+import io.reactivex.android.BuildConfig
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -79,7 +79,7 @@ open class RetrofitHelper {
 
         var retrofitBuilder: Retrofit.Builder? = null
 
-        fun defaultInit(host: String, port: Int) {
+        public fun defaultInit(host: String, port: Int) {
             DEFAULT_HOST = host
             DEFAULT_PORT = port
             initClientBuilder()
