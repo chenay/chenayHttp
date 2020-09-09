@@ -8,7 +8,7 @@ package com.chenay.platform.http.entity
  * @author: chenYan
  * @create: 2020-08-06 14:49
  **/
-class HintEntity {
+open  class HintEntity {
 
     companion object {
         val SHOW_NULL: Int = 0

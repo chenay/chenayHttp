@@ -13,7 +13,7 @@ import com.chenay.platform.http.simple.RetrofitHelper
  * @author: chenYan
  * @create: 2020-09-09 17:23
  **/
-public class HttpApplication : Application() {
+open class HttpApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

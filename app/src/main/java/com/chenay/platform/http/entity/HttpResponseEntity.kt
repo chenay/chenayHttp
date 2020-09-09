@@ -7,7 +7,7 @@ package com.chenay.platform.http.entity
  * @create: 2020-08-24 17:50
  **/
 
-class HttpResponseEntity<T> {
+open class HttpResponseEntity<T> {
 
     companion object {
         const val KEY_SUCCESS = "success"

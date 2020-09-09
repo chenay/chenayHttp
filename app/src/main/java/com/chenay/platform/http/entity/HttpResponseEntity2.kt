@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken
  * @create: 2020-08-24 17:50
  **/
 
-class HttpResponseEntity2<T> {
+open class HttpResponseEntity2<T> {
 
 
     companion object {
