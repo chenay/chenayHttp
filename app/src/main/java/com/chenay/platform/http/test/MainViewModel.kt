@@ -25,7 +25,7 @@ class MainViewModel : BaseViewModel() {
     /**
      * 查询收货记录
      */
-    fun newrequestFind(request: FgRcvRequestFind) {
+    fun requestFind(request: FgRcvRequestFind) {
 
         TestModelImpl().httpRequestGiRcvLog(
             request,
