@@ -1,7 +1,8 @@
 package com.chenay.platform.http.simple
 
+import com.chenay.platform.http.HttpApplication
+import com.chenay.platform.http.utils.ResourcesUtils
 import io.reactivex.Observable
-import io.reactivex.android.BuildConfig
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -29,7 +30,7 @@ import javax.net.ssl.X509TrustManager
  **/
 open class SimpleModel : Model {
 
-    open override fun <RespB> postJsonNoEncrypt(
+    override fun <RespB> postJsonNoEncrypt(
         observer: DisposableObserver<RespB>,
         api: (Retrofit) -> Observable<RespB>
     ) {
@@ -83,13 +84,10 @@ open class RetrofitHelper {
             DEFAULT_HOST = host
             DEFAULT_PORT = port
             initClientBuilder()
-            if (BuildConfig.DEBUG) {
-                val loggingInterceptor = HttpLoggingInterceptor()
-                loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-                clientBuilder?.addInterceptor(loggingInterceptor)
-            }
             initRetrofitBuilder()
         }
+
+
 
         open fun initClientBuilder() {
             clientBuilder =
@@ -99,7 +97,14 @@ open class RetrofitHelper {
                     //忽略证书
                     .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
                     .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+
+            if (ResourcesUtils.isAppDebug(HttpApplication.context)) {
+                val loggingInterceptor = HttpLoggingInterceptor()
+                loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+                clientBuilder?.addInterceptor(loggingInterceptor)
+            }
         }
+
 
         open fun initRetrofitBuilder() {
             if (retrofitBuilder == null) {
@@ -112,6 +117,8 @@ open class RetrofitHelper {
 
             }
         }
+
+
     }
 
 
